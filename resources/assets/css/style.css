@@ -1,0 +1,45 @@
+.panel-body img {
+    width: 100%;
+}
+
+a.topic {
+    background: #eff6fa;
+    padding: 1px 10px 0;
+    border-radius: 30px;
+    text-decoration: none;
+    margin: 0 5px 5px 0;
+    display: inline-block;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+a.topic:hover {
+    background: #259;
+    color: #fff;
+    text-decoration: none;
+}
+
+.actions {
+    display: flex;
+    padding: 10px 20px;
+}
+
+.delete-form {
+    margin-left: 20px;
+}
+
+.question-follow {
+    text-align: center;
+}
+
+.user-statics, .user-actions {
+    margin-top: 20px;
+}
+
+.user-statics {
+    display: flex;
+}
+
+.statics-item {
+    padding: 2px 20px;
+}
