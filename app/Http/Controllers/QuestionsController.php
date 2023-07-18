@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuestionRequest;
 use App\Repositories\QuestionRepository;
-use Illuminate\Http\Request;
 use Auth;
+use Mail;
 
 class QuestionsController extends Controller
 {

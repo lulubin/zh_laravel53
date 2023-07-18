@@ -73,6 +73,7 @@ class RegisterController extends Controller
             'api_token' => str_random(60),
         ]);
         $this->sendVerifyEmailTo($user);
+        flash('已发送激活邮件到您的注册邮箱，请前往激活')->success();
         return $user;
     }
 
@@ -82,6 +83,10 @@ class RegisterController extends Controller
             'url' => route('email.verify',['token'=>$user->confirmation_token]),
             'name' => $user->name
         ];
-        Mail::to($user->email)->send(new \App\Mail\WelcomeToLulublog($data));
+        Mail::send('email.welcome', $data, function ($message) use($user){
+            $subject = config('app.name').'注册';
+            $message->to($user->email)->subject($subject);
+        });
+        //count(Mail::failures())
     }
 }

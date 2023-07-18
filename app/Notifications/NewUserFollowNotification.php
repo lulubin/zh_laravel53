@@ -2,11 +2,11 @@
 
 namespace App\Notifications;
 
+use App\Channels\qqMailChannel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Auth;
+use Mail;
 
 class NewUserFollowNotification extends Notification
 {
@@ -24,9 +24,20 @@ class NewUserFollowNotification extends Notification
 
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', qqMailChannel::class];
     }
 
+    public function toQqMail($notifiable)
+    {
+        $data = [
+            'url' => route('home'),
+            'name' => Auth::guard('api')->user()->name,
+        ];
+        Mail::send('email.follow', $data, function ($message) use($notifiable){
+            $subject = config('app.name').'上有人关注了你';
+            $message->to($notifiable->email)->subject($subject);
+        });
+    }
 
     public function toDatabase($notifiable)
     {

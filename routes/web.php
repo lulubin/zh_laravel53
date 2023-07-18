@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'QuestionsController@index');
+Route::get('/', ['as'=>'home','uses'=>'QuestionsController@index']);
 
 Auth::routes();
 

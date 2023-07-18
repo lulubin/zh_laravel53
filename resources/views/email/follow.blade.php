@@ -1,0 +1,1 @@
+{{ config('app.name') }}上，{{ $name }} 关注了你: {{ $url }}
