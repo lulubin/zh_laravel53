@@ -83,6 +83,16 @@ class RegisterController extends Controller
             'url' => route('email.verify',['token'=>$user->confirmation_token]),
             'name' => $user->name
         ];
+        Mail::to($user->email)->send(new \App\Mail\WelcomeToLulublog($data));
+        //count(Mail::failures())
+    }
+
+    private function sendVerifyEmailToOld($user)
+    {
+        $data = [
+            'url' => route('email.verify',['token'=>$user->confirmation_token]),
+            'name' => $user->name
+        ];
         Mail::send('email.welcome', $data, function ($message) use($user){
             $subject = config('app.name').'注册';
             $message->to($user->email)->subject($subject);

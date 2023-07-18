@@ -33,6 +33,15 @@ class NewUserFollowNotification extends Notification
             'url' => route('home'),
             'name' => Auth::guard('api')->user()->name,
         ];
+        Mail::to($notifiable->email)->send(new \App\Mail\SomebodyFocusYou($data));
+    }
+
+    public function toQqMailOld($notifiable)
+    {
+        $data = [
+            'url' => route('home'),
+            'name' => Auth::guard('api')->user()->name,
+        ];
         Mail::send('email.follow', $data, function ($message) use($notifiable){
             $subject = config('app.name').'上有人关注了你';
             $message->to($notifiable->email)->subject($subject);
