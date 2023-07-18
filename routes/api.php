@@ -45,3 +45,6 @@ Route::post('/questions/follow', function (Request $request) {
 
 Route::post('/user/follower', 'FollowersController@index')->middleware('auth:api');
 Route::post('/user/follow', 'FollowersController@follow')->middleware('auth:api');
+
+Route::post('/answer/voter', 'VotesController@index')->middleware('auth:api');
+Route::post('/answer/vote', 'VotesController@vote')->middleware('auth:api');
