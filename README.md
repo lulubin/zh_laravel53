@@ -4,3 +4,4 @@ laravel5.3开发知乎
 1. composer install
 2. npm install
 3. php artisan key:generate
+4. php
