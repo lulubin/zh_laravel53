@@ -50,3 +50,6 @@ Route::post('/answer/voter', 'VotesController@index')->middleware('auth:api');
 Route::post('/answer/vote', 'VotesController@vote')->middleware('auth:api');
 
 Route::post('/message/store', 'MessagesController@store')->middleware('auth:api');
+
+Route::post('/comments', 'CommentsController@index');
+Route::post('/comment/store', 'CommentsController@store')->middleware('auth:api');

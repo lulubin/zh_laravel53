@@ -24,6 +24,10 @@
                         <button class="btn btn-danger">删除</button>
                     </form>
                     @endif
+                    <comments type="question"
+                              model="{{$question->id}}"
+                              count="{{$question->comments()->count()}}">
+                    </comments>
                 </div>
             </div>
         </div>
@@ -35,9 +39,6 @@
                 </div>
                 @if(Auth::check())
                 <div class="panel-body">
-            <!-- <a href="/question/{{$question->id}}/follow" class="btn btn-default {{ Auth::user()->followed($question->id) ? 'btn-success' : ''}}">
-                        {{ Auth::user()->followed($question->id) ? '已关注' : '关注该问题'}}
-                </a>-->
                     <question-follow-button question="{{$question->id}}"></question-follow-button>
                     <a href="#editor" class="btn btn-primary pull-right">撰写答案</a>
                 </div>
@@ -102,6 +103,10 @@
                             </h4>
                             {!! $answer->content !!}
                         </div>
+                        <comments type="answer"
+                                  model="{{$answer->id}}"
+                                  count="{{$answer->comments()->count()}}">
+                        </comments>
                     </div>
                     @endforeach
                     @if(Auth::check())
