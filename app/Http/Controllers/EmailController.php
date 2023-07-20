@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Http\Request;
+use Auth;
 
 class EmailController extends Controller
 {
@@ -17,7 +17,7 @@ class EmailController extends Controller
         $user->is_active = 1;
         $user->confirmation_token = str_random(40);
         $user->save();
-        \Auth::login($user);
+        Auth::login($user);
         return redirect('/home');
     }
 }

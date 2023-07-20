@@ -17,33 +17,17 @@ class QuestionsController extends Controller
         $this->questionRepository = $questionRepository;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $questions = $this->questionRepository->getQuestionsFeed();
         return view('questions.index', compact('questions'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('questions.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreQuestionRequest $request)
     {
         $topics = $this->questionRepository->normalizeTopic($request->get('topics'));
@@ -57,24 +41,12 @@ class QuestionsController extends Controller
         return redirect()->route('questions.show',[$question->id]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $question = $this->questionRepository->byIdWithTopicsAndAnswers($id);
         return view('questions.show', compact('question'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $question = $this->questionRepository->byId($id);
@@ -84,13 +56,6 @@ class QuestionsController extends Controller
         return back();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(StoreQuestionRequest $request, $id)
     {
         $question = $this->questionRepository->byId($id);
@@ -103,12 +68,6 @@ class QuestionsController extends Controller
         return redirect()->route('questions.show',[$question->id]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $question = $this->questionRepository->byId($id);

@@ -12,14 +12,8 @@ class NewUserFollowNotification extends Notification
 {
     use Queueable;
 
-    /**
-     * Create a new notification instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
-        //
     }
 
     public function via($notifiable)
@@ -31,7 +25,7 @@ class NewUserFollowNotification extends Notification
     {
         $data = [
             'url' => route('home'),
-            'name' => Auth::guard('api')->user()->name,
+            'name' => user('api')->name,
         ];
         Mail::to($notifiable->email)->send(new \App\Mail\SomebodyFocusYou($data));
     }
@@ -40,7 +34,7 @@ class NewUserFollowNotification extends Notification
     {
         $data = [
             'url' => route('home'),
-            'name' => Auth::guard('api')->user()->name,
+            'name' => user('api')->name,
         ];
         Mail::send('email.follow', $data, function ($message) use($notifiable){
             $subject = config('app.name').'上有人关注了你';
@@ -51,7 +45,7 @@ class NewUserFollowNotification extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'name' => Auth::guard('api')->user()->name,
+            'name' => user('api')->name,
         ];
     }
 

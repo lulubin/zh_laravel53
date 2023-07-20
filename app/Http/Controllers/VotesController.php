@@ -17,8 +17,7 @@ class VotesController extends Controller
 
     public function index(Request $request)
     {
-        $user = Auth::guard('api')->user();
-        if($user->hasVotedFor($request->get('answer'))){
+        if(user('api')->hasVotedFor($request->get('answer'))){
             $voted = true;
         }else{
             $voted = false;
@@ -29,7 +28,7 @@ class VotesController extends Controller
     public function vote()
     {
         $answer = $this->answer->byId(request('answer'));
-        $userToVote = Auth::guard('api')->user()->voteFor(request('answer'));
+        $userToVote = user('api')->voteFor(request('answer'));
         if(count($userToVote['attached']) > 0){
             $answer->increment('votes_count');
             $voted = true;

@@ -20,7 +20,7 @@ class FollowersController extends Controller
     {
         $user = $this->userRepository->byId($request->get('user'));
         $followers = $user->followersUser()->pluck('follower_id')->toArray();
-        if(in_array(Auth::guard('api')->user()->id, $followers)){
+        if(in_array(user('api')->id, $followers)){
             $followed = true;
         }else{
             $followed = false;
@@ -31,7 +31,7 @@ class FollowersController extends Controller
     public function follow()
     {
         $userToFollow = $this->userRepository->byId(request('user'));
-        $followed = Auth::guard('api')->user()->followThisUser($userToFollow->id);
+        $followed = user('api')->followThisUser($userToFollow->id);
         if(count($followed['attached']) > 0){
             $userToFollow->increment('followers_count');
             $followed = true;
