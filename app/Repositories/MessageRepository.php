@@ -23,7 +23,9 @@ class MessageRepository
 
     public function getMessageListByUserId($dialogId)
     {
-        return Message::where('dialog_id', $dialogId)->latest()->get();
+        $messages = Message::where('dialog_id', $dialogId)->latest()->get();
+        $messages->markAsRead();
+        return $messages;
     }
 
     public function store($dialogId)

@@ -19,4 +19,20 @@ class Message extends Model
     {
         return $this->belongsTo(User::class,'to_user_id');
     }
+
+    public function markAsRead()
+    {
+        if(is_null($this->read_at)){
+            $data = [
+                'has_read' => 'T',
+                'read_at' => $this->freshTimestamp()
+            ];
+            $this->forceFill($data)->save();
+        }
+    }
+
+    public function newCollection(array $models = [])
+    {
+        return new MessageCollection($models);
+    }
 }
