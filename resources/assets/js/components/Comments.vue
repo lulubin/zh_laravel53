@@ -18,8 +18,8 @@
             <div v-if="comments.length >0">
               <div class="media" v-for="comment in comments">
                 <div class="media-left">
-                  <a href="#">
-                    <img :src="comment.user.avatar" class="media-object" width="24">
+                  <a href="#" class="a-avatar2">
+                    <img :src="comment.user.avatar" class="media-object avatar" width="50">
                   </a>
                 </div>
                 <div class="media-body">
