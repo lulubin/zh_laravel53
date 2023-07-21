@@ -45,7 +45,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 pull-right">
             <div class="panel panel-default">
                 <div class="panel-heading question-follow">
                     <h5>关于作者</h5>

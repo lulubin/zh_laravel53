@@ -9,12 +9,12 @@
                 <div class="panel-body">
                     @foreach($messages as $key => $messageGroup)
                     <div class="media">
-                        <div class="media-left">
-                            <a href="#">
+                        <div class="media-left" >
+                            <a href="" class="a-avatar">
                                 @if(Auth::id() == $key)
-                                <img src="{{$messageGroup->first()->fromUser->avatar}}">
+                                <img src="{{$messageGroup->first()->fromUser->avatar}}" alt="{{$messageGroup->first()->fromUser->name}}" class="avatar">
                                 @else
-                                <img src="{{$messageGroup->first()->toUser->avatar}}">
+                                <img src="{{$messageGroup->first()->toUser->avatar}}" alt="{{$messageGroup->first()->toUser->name}}" class="avatar">
                                 @endif
                             </a>
                         </div>

@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">兑换列表</div>
+                <div class="panel-heading">对话列表</div>
                 <div class="panel-body">
                     <form action="/inbox/{{$dialogId}}/store" method="post">
                         {{ csrf_field() }}
@@ -20,8 +20,8 @@
                         @foreach($messages as $message)
                         <div class="media">
                             <div class="media-left">
-                                <a href="#">
-                                    <img src="{{$message->fromUser->avatar}}">
+                                <a href="#" class="a-avatar">
+                                    <img src="{{$message->fromUser->avatar}}" class="avatar" alt="{{$message->fromUser->name}}">
                                 </a>
                             </div>
                             <div class="media-body">
