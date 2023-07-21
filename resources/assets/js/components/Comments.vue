@@ -45,14 +45,7 @@ export default {
   data() {
     return {
       content:'',
-      comments:[],
-      newComment:{
-        user:{
-          name:Zhihu.name,
-          avatar:Zhihu.avatar,
-        },
-        content:''
-      }
+      comments:[]
     }
   },
   computed:{
@@ -69,8 +62,14 @@ export default {
   methods: {
     store() {
       this.$http.post('/api/comment/store',{'type':this.type,'model':this.model,'content':this.content}).then(response => {
-        this.newComment.content = response.data.content
-        this.comments.push(this.newComment)
+        let comment = {
+          user:{
+            name: Zhihu.name,
+            avatar: Zhihu.avatar,
+          },
+          content: response.data.content
+        }
+        this.comments.push(comment)
         this.content = ''
         this.count ++
       })

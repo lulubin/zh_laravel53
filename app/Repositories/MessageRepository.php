@@ -25,7 +25,7 @@ class MessageRepository
             ->groupBy('dialog_id');
     }
 
-    public function getMessageListByUserId($dialogId)
+    public function getMessageListByDialogId($dialogId)
     {
         $messages = Message::where('dialog_id', $dialogId)
             ->with(['fromUser'=>function($query){
