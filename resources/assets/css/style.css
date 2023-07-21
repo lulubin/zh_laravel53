@@ -43,3 +43,7 @@ a.topic:hover {
 .statics-item {
     padding: 2px 20px;
 }
+
+.message-list {
+    margin-top: 80px;
+}

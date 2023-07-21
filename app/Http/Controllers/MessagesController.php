@@ -19,7 +19,8 @@ class MessagesController extends Controller
         $message = $this->messageRepository->create([
             'to_user_id' => request('user'),
             'from_user_id' => user('api')->id,
-            'content' => request('content')
+            'content' => request('content'),
+            'dialog_id' => time().Auth::id(),
         ]);
         if($message){
             $status = true;
