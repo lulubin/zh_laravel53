@@ -15,15 +15,26 @@ class MessageRepository
     {
         return Message::where('to_user_id',user()->id)
             ->orWhere('from_user_id',user()->id)
-            ->with(['fromUser','toUser'])
+            ->with(['fromUser'=>function($query){
+                return $query->select(['id','name','avatar']);
+            },'toUser'=>function($query){
+                return $query->select(['id','name','avatar']);
+            }])
+            ->latest()
             ->get()
-            ->unique('dialog_id')
-            ->groupBy('to_user_id');
+            ->groupBy('dialog_id');
     }
 
     public function getMessageListByUserId($dialogId)
     {
-        $messages = Message::where('dialog_id', $dialogId)->latest()->get();
+        $messages = Message::where('dialog_id', $dialogId)
+            ->with(['fromUser'=>function($query){
+                return $query->select(['id','name','avatar']);
+            },'toUser'=>function($query){
+                return $query->select(['id','name','avatar']);
+            }])
+            ->latest()
+            ->get();
         $messages->markAsRead();
         return $messages;
     }

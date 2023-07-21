@@ -8371,4 +8371,8 @@ a.topic:hover {
   border-radius: 50%;
 }
 
+.unread {
+  background: #FAF1BD;
+}
+
 /*# sourceMappingURL=app.css.map */
