@@ -22,7 +22,7 @@ class InboxController extends Controller
 
     public function show($dialogId)
     {
-        $messages = $this->messageRepository->getMessageListByUserId($dialogId);
+        $messages = $this->messageRepository->getMessageListByDialogId($dialogId);
         return view('inbox.show', compact('messages','dialogId'));
     }
 

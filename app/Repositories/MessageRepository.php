@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Message;
+use App\Notifications\NewMessageNotification;
 
 class MessageRepository
 {
@@ -43,11 +44,12 @@ class MessageRepository
     {
         $message = Message::where('dialog_id', $dialogId)->first();
         $toUserId = $message->from_user_id === user()->id ? $message->to_user_id : $message->from_user_id;
-        return Message::create([
+        $newMessage =  Message::create([
             'from_user_id' => user()->id,
             'to_user_id' => $toUserId,
             'content' => request('content'),
             'dialog_id' => $dialogId
         ]);
+        return $newMessage->toUser->notify(new NewMessageNotification($newMessage));
     }
 }
