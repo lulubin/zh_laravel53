@@ -19,3 +19,9 @@ Route::post('inbox/{dialogId}/store', 'InboxController@store');
 
 Route::get('avatar', 'UsersController@avatar');
 Route::post('avatar', 'UsersController@changeAvatar');
+
+Route::get('password', 'PasswordController@password');
+Route::post('password', 'PasswordController@update');
+
+Route::get('setting', 'SettingController@index');
+Route::post('setting', 'SettingController@store');

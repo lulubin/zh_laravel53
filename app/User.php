@@ -12,11 +12,15 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'confirmation_token', 'api_token'
+        'name', 'email', 'password', 'avatar', 'confirmation_token', 'api_token', 'setting'
     ];
 
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    protected $casts = [
+        'setting' => 'json'
     ];
 
     public function sendPasswordResetNotification($token)
@@ -85,5 +89,10 @@ class User extends Authenticatable
     public function messages()
     {
         return $this->hasMany(Message::class,'to_user_id');
+    }
+
+    public function setting()
+    {
+        return new Setting($this);
     }
 }

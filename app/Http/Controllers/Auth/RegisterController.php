@@ -71,6 +71,7 @@ class RegisterController extends Controller
             'confirmation_token' => str_random(40),
             'password' => bcrypt($data['password']),
             'api_token' => str_random(60),
+            'setting' => ['city'=>''],
         ]);
         $this->sendVerifyEmailTo($user);
         flash('已发送激活邮件到您的注册邮箱，请前往激活')->success();
