@@ -22,3 +22,6 @@ Route::post('avatar', 'UsersController@changeAvatar');
 
 Route::get('password', 'PasswordController@password');
 Route::post('password', 'PasswordController@update');
+
+Route::get('setting', 'SettingController@index');
+Route::post('setting', 'SettingController@store');
